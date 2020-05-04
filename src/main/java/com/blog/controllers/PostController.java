@@ -5,10 +5,12 @@
  */
 package com.blog.controllers;
 
+import com.blog.entities.Comment;
 import com.blog.entities.Post;
 import com.blog.entities.User;
 import com.blog.repositories.PostRepository;
 import java.util.List;
+import java.util.Optional;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
@@ -34,6 +36,13 @@ public class PostController {
     @Produces(MediaType.APPLICATION_JSON)
     public List<Post> getAll() {
         return postRepository.findAll();
+    }
+    
+    @GET
+    @Path("/{id}")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Optional<Post> getById(Long id) {
+        return postRepository.findById(id);
     }
 
     @POST

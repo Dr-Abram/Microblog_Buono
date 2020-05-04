@@ -5,9 +5,11 @@
  */
 package com.blog.controllers;
 
+import com.blog.entities.Post;
 import com.blog.entities.User;
 import com.blog.repositories.UserRepository;
 import java.util.List;
+import java.util.Optional;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,6 +31,13 @@ public class UserController {
     @Produces(MediaType.APPLICATION_JSON)
     public List<User> getAll() {
         return userRepository.findAll();
+    }
+    
+    @GET
+    @Path("/{id}")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Optional<User> getById(Long id) {
+        return userRepository.findById(id);
     }
 
     @POST

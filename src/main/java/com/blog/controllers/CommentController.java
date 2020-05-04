@@ -8,6 +8,7 @@ package com.blog.controllers;
 import com.blog.entities.Comment;
 import com.blog.repositories.CommentRepository;
 import java.util.List;
+import java.util.Optional;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
@@ -33,6 +34,13 @@ public class CommentController {
     @Produces(MediaType.APPLICATION_JSON)
     public List<Comment> getAll() {
         return commentRepository.findAll();
+    }
+    
+    @GET
+    @Path("/{id}")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Optional<Comment> getById(Long id) {
+        return commentRepository.findById(id);
     }
 
     @POST
