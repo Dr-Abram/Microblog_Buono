@@ -20,7 +20,7 @@ import org.springframework.stereotype.Component;
  * @author Abreham
  */
 @Component
-@Path("/users")
+@Path("/user")
 public class UserController {
 
     // inietto dentro userRepository il codice di UserRepository (UserRepository è una dependency)
