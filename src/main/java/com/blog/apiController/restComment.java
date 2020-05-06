@@ -3,12 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.blog.controllers;
+package com.blog.apiController;
 
 import com.blog.entities.Comment;
-import com.blog.entities.Post;
-import com.blog.entities.User;
-import com.blog.repositories.PostRepository;
+import com.blog.repositories.CommentRepository;
 import java.util.List;
 import java.util.Optional;
 import javax.ws.rs.Consumes;
@@ -25,31 +23,30 @@ import org.springframework.stereotype.Component;
  * @author Abreham
  */
 @Component
-@Path("/post")
-public class PostController {
+@Path("/comment")
+public class restComment {
     
-// inietto dentro userRepository il codice di UserRepository (UserRepository è una dependency)
+    // inietto dentro userRepository il codice di UserRepository (UserRepository è una dependency)
     @Autowired
-    private PostRepository postRepository;
+    private CommentRepository commentRepository;
 
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-    public List<Post> getAll() {
-        return postRepository.findAll();
+    public List<Comment> getAll() {
+        return commentRepository.findAll();
     }
     
     @GET
     @Path("/{id}")
     @Produces(MediaType.APPLICATION_JSON)
-    public Optional<Post> getById(Long id) {
-        return postRepository.findById(id);
+    public Optional<Comment> getById(Long id) {
+        return commentRepository.findById(id);
     }
 
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
-    public Post addUser(Post post) {
-        return postRepository.saveAndFlush(post);
+    public Comment addUser(Comment comment) {
+        return commentRepository.saveAndFlush(comment);
     }
-    
 }

@@ -17,7 +17,7 @@ import org.hibernate.annotations.ManyToAny;
  */
 @Entity
 @Table(name = "pos")
-public class Post{
+public class Post implements Serializable{
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

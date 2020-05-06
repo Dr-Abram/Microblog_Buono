@@ -3,14 +3,17 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.blog.controllers;
+package com.blog.apiController;
 
 import com.blog.entities.Post;
-import com.blog.entities.User;
-import com.blog.repositories.UserRepository;
+import com.blog.repositories.PostRepository;
 import java.util.List;
 import java.util.Optional;
-import javax.ws.rs.*;
+import javax.ws.rs.Consumes;
+import javax.ws.rs.GET;
+import javax.ws.rs.POST;
+import javax.ws.rs.Path;
+import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -20,32 +23,31 @@ import org.springframework.stereotype.Component;
  * @author Abreham
  */
 @Component
-@Path("/user")
-public class UserController {
-
-    // inietto dentro userRepository il codice di UserRepository (UserRepository è una dependency)
+@Path("/post")
+public class restPost {
+    
+// inietto dentro userRepository il codice di UserRepository (UserRepository è una dependency)
     @Autowired
-    private UserRepository userRepository;
+    private PostRepository postRepository;
 
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-    public List<User> getAll() {
-        return userRepository.findAll();
+    public List<Post> getAll() {
+        return postRepository.findAll();
     }
     
     @GET
     @Path("/{id}")
     @Produces(MediaType.APPLICATION_JSON)
-    public Optional<User> getById(Long id) {
-        return userRepository.findById(id);
+    public Optional<Post> getById(Long id) {
+        return postRepository.findById(id);
     }
 
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
-    public User addUser(User user) {
-        return userRepository.saveAndFlush(user);
+    public Post addUser(Post post) {
+        return postRepository.saveAndFlush(post);
     }
-    
     
 }

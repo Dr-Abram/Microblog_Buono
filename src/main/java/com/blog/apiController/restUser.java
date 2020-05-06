@@ -3,17 +3,13 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.blog.controllers;
+package com.blog.apiController;
 
-import com.blog.entities.Comment;
-import com.blog.repositories.CommentRepository;
+import com.blog.entities.User;
+import com.blog.repositories.UserRepository;
 import java.util.List;
 import java.util.Optional;
-import javax.ws.rs.Consumes;
-import javax.ws.rs.GET;
-import javax.ws.rs.POST;
-import javax.ws.rs.Path;
-import javax.ws.rs.Produces;
+import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -23,30 +19,39 @@ import org.springframework.stereotype.Component;
  * @author Abreham
  */
 @Component
-@Path("/comment")
-public class CommentController {
-    
+@Path("/user")
+public class restUser {
+
     // inietto dentro userRepository il codice di UserRepository (UserRepository è una dependency)
     @Autowired
-    private CommentRepository commentRepository;
+    private UserRepository userRepository;
 
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-    public List<Comment> getAll() {
-        return commentRepository.findAll();
+    public List<User> getAll() {
+        return userRepository.findAll();
     }
     
     @GET
     @Path("/{id}")
     @Produces(MediaType.APPLICATION_JSON)
-    public Optional<Comment> getById(Long id) {
-        return commentRepository.findById(id);
+    public Optional<User> getById(Long id) {
+        return userRepository.findById(id);
+    }
+    
+    @GET
+    @Path("/{id}")
+    @Produces(MediaType.APPLICATION_JSON)
+    public User getUser(@PathParam("id") Long id) {
+        return userRepository.getOne(id);
     }
 
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
-    public Comment addUser(Comment comment) {
-        return commentRepository.saveAndFlush(comment);
+    public User addUser(User user) {
+        return userRepository.saveAndFlush(user);
     }
+    
+    
 }
