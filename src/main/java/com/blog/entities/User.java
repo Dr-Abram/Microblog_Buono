@@ -31,6 +31,11 @@ public class User implements Serializable {
     @Basic
     @Getter
     @Setter
+    private String email;
+    
+    @Basic
+    @Getter
+    @Setter
     private String password;
     
 }
