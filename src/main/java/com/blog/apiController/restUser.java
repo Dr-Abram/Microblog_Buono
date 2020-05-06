@@ -37,14 +37,7 @@ public class restUser {
     @Produces(MediaType.APPLICATION_JSON)
     public Optional<User> getById(Long id) {
         return userRepository.findById(id);
-    }
-    
-    @GET
-    @Path("/{id}")
-    @Produces(MediaType.APPLICATION_JSON)
-    public User getUser(@PathParam("id") Long id) {
-        return userRepository.getOne(id);
-    }
+    } 
 
     @POST
     @Consumes(MediaType.APPLICATION_JSON)

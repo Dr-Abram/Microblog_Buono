@@ -13,21 +13,21 @@ import org.springframework.web.bind.annotation.RequestMapping;
  *
  * @author Abreham
  */
-@Controller
+//@Controller
 public class homeController {
 
-    @RequestMapping("/")
+//    @RequestMapping("/")
     /**
      * HOME PAGE
      */
-    public String getHomePage() {
+/*    public String getHomePage() {
         return "index.html";
     }
 
     /**
      * REGISTRATION PAGE
      */
-    @RequestMapping("/register")
+/*    @RequestMapping("/register")
     public String getRegistrationPage() {
         return "register.html";
     }
@@ -37,7 +37,7 @@ public class homeController {
      *
      * @return HTML page - login page
      */
-    @RequestMapping("/login")
+/*    @RequestMapping("/login")
     public String getLoginPage() {
         return "login.html";
     }
@@ -47,7 +47,7 @@ public class homeController {
      *
      * @return HTML page - logout page
      */
-    @GetMapping("/logout")
+/*    @GetMapping("/logout")
     public String logout() {
         return "logout.html";
     }
@@ -57,8 +57,8 @@ public class homeController {
      *
      * @return HTML page - login page
      */
-    @GetMapping("/login")
+/*    @GetMapping("/login")
     public String login() {
         return "login.html";
-    }
+    }*/
 }
