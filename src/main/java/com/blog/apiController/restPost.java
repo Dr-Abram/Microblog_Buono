@@ -10,21 +10,12 @@ import com.blog.repositories.PostRepository;
 import com.blog.repositories.CommentRepository;
 import java.net.URI;
 import java.net.URISyntaxException;
-import java.util.List;
 import java.util.Optional;
-import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
-import javax.ws.rs.GET;
-import javax.ws.rs.POST;
-import javax.ws.rs.Path;
-import javax.ws.rs.PathParam;
-import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.repository.query.Param;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -38,10 +29,10 @@ import static org.springframework.web.bind.annotation.RequestMethod.*;
  * @author Abreham
  */
 @RestController
-@RequestMapping("/api/v1/posts")
+@RequestMapping("/api/posts")
 public class restPost {
 
-// inietto dentro userRepository il codice di UserRepository (UserRepository è una dependency)
+// inietto dentro postRepository il codice di PostRepository (PostRepository è una dependency)
     @Autowired
     private PostRepository postRepository;
 
@@ -49,8 +40,8 @@ public class restPost {
     private CommentRepository commentRepository;
 
     @GetMapping
-    public List<Post> getAll() {
-        return postRepository.findAll();
+    public ResponseEntity getAll() {
+        return ResponseEntity.ok(postRepository.findAll());
     }
 
     @GetMapping(value = "{id}")

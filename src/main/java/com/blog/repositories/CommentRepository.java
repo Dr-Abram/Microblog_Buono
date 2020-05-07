@@ -7,7 +7,6 @@ package com.blog.repositories;
 
 import com.blog.entities.Comment;
 import com.blog.entities.Post;
-import java.util.List;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
