@@ -16,11 +16,11 @@ import org.hibernate.annotations.ManyToAny;
  * @author Abreham
  */
 @Entity
-@Table(name = "pos")
+@Table(name = "posts")
 public class Post implements Serializable{
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Getter
     @Setter
     private Long id;
@@ -36,7 +36,6 @@ public class Post implements Serializable{
     @Getter
     @Setter
     @ManyToOne(targetEntity = User.class)
-    @JoinColumn(name = "User_Id", nullable = false, updatable = false)
     private User user;
     
 }

@@ -7,6 +7,9 @@ package com.blog.apiController;
 
 import com.blog.entities.Post;
 import com.blog.repositories.PostRepository;
+import com.blog.repositories.CommentRepository;
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.util.List;
 import java.util.Optional;
 import javax.ws.rs.Consumes;
@@ -37,51 +40,60 @@ import static org.springframework.web.bind.annotation.RequestMethod.*;
 @RestController
 @RequestMapping("/api/v1/posts")
 public class restPost {
-    
+
 // inietto dentro userRepository il codice di UserRepository (UserRepository è una dependency)
     @Autowired
     private PostRepository postRepository;
+
+    @Autowired
+    private CommentRepository commentRepository;
 
     @GetMapping
     public List<Post> getAll() {
         return postRepository.findAll();
     }
-    
+
     @GetMapping(value = "{id}")
     public ResponseEntity getById(@PathVariable("id") Long id) {
-        
+
         Optional<Post> op = postRepository.findById(id);
-        
+
         if (op.isPresent()) {
-   
+
             return new ResponseEntity<Post>(op.get(), HttpStatus.OK);
         } else {
-            
+
             return new ResponseEntity(HttpStatus.NOT_FOUND);
         }
     }
 
     @PostMapping(consumes = MediaType.APPLICATION_JSON)
-    public ResponseEntity addPost(@RequestBody Post post) {
-        
+    public ResponseEntity addPost(@RequestBody Post post) throws URISyntaxException {
+
         postRepository.saveAndFlush(post);
-        
-        return new ResponseEntity(HttpStatus.CREATED);
+
+        return ResponseEntity.created(new URI("http://localhost:8084/api/v1/posts/" + post.getId())).build();
     }
-    
+
     @RequestMapping(value = "{id}", method = DELETE)
-    public ResponseEntity deletePost(@PathVariable("id") Long id){
-        
+    public ResponseEntity deletePost(@PathVariable("id") Long id) {
+
         try {
-            
+
             postRepository.deleteById(id);
             return new ResponseEntity(HttpStatus.NO_CONTENT);
-            
+
         } catch (IllegalArgumentException e) {
-            
+
             return new ResponseEntity(HttpStatus.BAD_REQUEST);
-            
+
         }
     }
-    
+
+    @GetMapping(value = "{id}/comments")
+    public ResponseEntity getAllComment(@PathVariable("id") Long id) {
+
+        return ResponseEntity.ok(commentRepository.findByPost(postRepository.findById(id).get()));
+    }
+
 }

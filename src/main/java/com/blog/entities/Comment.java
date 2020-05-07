@@ -22,11 +22,11 @@ import lombok.Setter;
  */
 
 @Entity
-@Table(name = "comment")
+@Table(name = "comments")
 public class Comment implements Serializable {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Getter
     @Setter
     private Long id;

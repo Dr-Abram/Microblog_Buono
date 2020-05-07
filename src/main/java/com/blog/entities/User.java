@@ -15,10 +15,10 @@ import lombok.Setter;
  * @author Abreham
  */
 @Entity
-@Table(name = "user")
+@Table(name = "users")
 public class User implements Serializable {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Getter
     @Setter
     private Long id;
