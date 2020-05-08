@@ -1,8 +1,8 @@
 # Microblog_Buono
  micro blog per scuola
  
- Il progetto si appoggia su un database H2:
-                                               - username = sa
+ Il progetto si appoggia su un database H2:    - database name: blogdb
+                                               | username = sa
                                                | password = /
                                                
  - Indirizzo: http://localhost:8084/h2
