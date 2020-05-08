@@ -23,7 +23,7 @@ Dalla pagina HOME reperibile all'indirizzo http://localhost:8084/ si può fare d
    - cercare tutti i post:
                          - http://localhost:8084/api/posts
    - cercare un post tramite ID:
-                         - http://localhost:8084/api/comments/{id}
+                         - http://localhost:8084/api/posts/{id}
    - cercare tutti i commenti di un post:
                          - http://localhost:8084/api/posts/{id}/comments
    
