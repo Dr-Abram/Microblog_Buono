@@ -24,6 +24,8 @@
                          - http://localhost:8084/api/comments/{id}
    - cercare tutti i commenti di un post:
                          - http://localhost:8084/api/posts/{id}/comments
-                         
+   
    - cercare tutti i commenti:
                          - http://localhost:8084/api/comments
+   - cercare un commento tramite ID:
+                         - http://localhost:8084/api/comments/{id}
