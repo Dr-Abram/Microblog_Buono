@@ -7,6 +7,8 @@
                                                
  - Indirizzo: http://localhost:8084/h2
 
+
+Dalla pagina HOME reperibile all'indirizzo http://localhost:8084/ si può svolgere la funzione di Login e Registrazione, siccome la loro implementazione non era richiesta non ci ho perso molto tempo ed appena ho riscontrato problemi non sono più andato avanti. La registrazione in realtà funziona, o meglio fa la registrazione ma non restituisce la pagina PROFILE.HTML ma una valanga di errori ed è stato il motivo per cui non ho proseguito.
 #####################################################################################
  
  Per fare le interrogazioni:
