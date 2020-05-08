@@ -3,7 +3,7 @@
  
  Il progetto si appoggia su un database H2:
                                                - username = sa
-                                               - password = /
+                                               | password = /
                                                
  - Indirizzo: http://localhost:8084/h2
 
