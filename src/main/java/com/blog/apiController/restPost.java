@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.blog.apiController;
+package com.blog.apiController; 
 
 import com.blog.entities.Post;
 import com.blog.repositories.PostRepository;
@@ -32,7 +32,7 @@ import static org.springframework.web.bind.annotation.RequestMethod.*;
 @RequestMapping("/api/posts")
 public class restPost {
 
-// inietto dentro postRepository il codice di PostRepository (PostRepository è una dependency)
+// inietto dentro postRepository il codice di PostRepository (PostRepository è una dependency).
     @Autowired
     private PostRepository postRepository;
 
@@ -63,7 +63,7 @@ public class restPost {
 
         postRepository.saveAndFlush(post);
 
-        return ResponseEntity.created(new URI("http://localhost:8084/api/v1/posts/" + post.getId())).build();
+        return ResponseEntity.created(new URI("http://localhost:8084/api/posts/" + post.getId())).build();
     }
 
     @RequestMapping(value = "{id}", method = DELETE)
