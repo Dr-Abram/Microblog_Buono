@@ -29,3 +29,7 @@
                          - http://localhost:8084/api/comments
    - cercare un commento tramite ID:
                          - http://localhost:8084/api/comments/{id}
+                         
+#####################################################################################
+
+Per creare le risolse ho usto postman
