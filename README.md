@@ -32,4 +32,4 @@
                          
 #####################################################################################
 
-Per creare le risolse ho usto postman
+Per creare le risolse ho usato postman
