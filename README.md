@@ -1,5 +1,4 @@
 # Microblog_Buono
- micro blog per scuola
  
  Il progetto si appoggia su un database H2:    - database name: blogdb
                                                | username = sa
