@@ -31,4 +31,4 @@
                          
 #####################################################################################
 
-Per creare le risolse ho usato postman
+Per creare le risolse si può usare postman oppure il client (per ora si può interagire solo con gli utenti)
