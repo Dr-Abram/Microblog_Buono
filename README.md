@@ -5,8 +5,6 @@
                                                | password = /
                                                
  - Indirizzo: http://localhost:8084/h2
-
-#####################################################################################
  
 ## Per fare le interrogazioni:
  
@@ -29,6 +27,6 @@
    - cercare un commento tramite ID:
                          - http://localhost:8084/api/comments/{id}
                          
-#####################################################################################
+## Creare risorse
 
 Per creare le risolse si può usare postman oppure il client (per ora si può interagire solo con gli utenti)
