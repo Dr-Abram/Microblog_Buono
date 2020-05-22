@@ -9,3 +9,4 @@
  */
 insert into users(username, email, password) values ('pippo', 'pippo@pippo.com', 'pippo');
 insert into posts(title, content, user_id) values ('pizza', 'la pizza buonisima', 1);
+insert into comments(title, content, post_id, user_id) values ('disaccordo', 'a me non piace', 1, 1);
