@@ -61,8 +61,10 @@ public class restPost {
     @PostMapping(consumes = MediaType.APPLICATION_JSON)
     public ResponseEntity addPost(@RequestBody Post post) throws URISyntaxException {
 
-        postRepository.saveAndFlush(post);
-
+        if (post.getTitle().length()!=0 && post.getContent().length()!=0) {
+            postRepository.saveAndFlush(post);
+        }
+        
         return ResponseEntity.created(new URI("http://localhost:8084/api/posts/" + post.getId())).build();
     }
 

@@ -40,7 +40,7 @@ public class restUser {
 
     @GetMapping
     public ResponseEntity getAll() {
-        return ResponseEntity.ok(userRepository.findAll()); 
+        return ResponseEntity.ok(userRepository.findAll());
     }
 
     @GetMapping(value = "{id}")
@@ -49,19 +49,18 @@ public class restUser {
         Optional<User> op = userRepository.findById(id);
 
         if (op.isPresent()) {
-
             return new ResponseEntity<User>(op.get(), HttpStatus.OK);
         } else {
-
             return new ResponseEntity(HttpStatus.NOT_FOUND);
         }
     }
 
     @PostMapping(consumes = MediaType.APPLICATION_JSON)
     public ResponseEntity addUser(@RequestBody User user) throws URISyntaxException {
-
-        userRepository.saveAndFlush(user);
-
+        
+        if (user.getUsername().length()!=0 && user.getPassword().length()!=0) {
+            userRepository.saveAndFlush(user);
+        }
         return ResponseEntity.created(new URI("http://localhost:8084/api/users/" + user.getId())).build();
     }
 
