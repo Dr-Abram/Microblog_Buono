@@ -40,7 +40,7 @@ public class restUser {
 
     @GetMapping
     public ResponseEntity getAll() {
-        return ResponseEntity.ok(userRepository.findAll());
+        return ResponseEntity.ok(userRepository.findAll()); 
     }
 
     @GetMapping(value = "{id}")
