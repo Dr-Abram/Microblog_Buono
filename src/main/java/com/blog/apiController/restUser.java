@@ -28,7 +28,7 @@ import org.springframework.web.bind.annotation.RestController;
  * @author Abreham
  */
 @RestController
-@RequestMapping("/api/users")
+@RequestMapping("/users")
 public class restUser {
 
     // inietto dentro userRepository il codice di UserRepository (UserRepository è una dependency)
