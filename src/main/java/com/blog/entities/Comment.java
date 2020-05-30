@@ -6,6 +6,7 @@
 package com.blog.entities;
 
 import java.io.Serializable;
+import javax.persistence.Basic;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -31,10 +32,12 @@ public class Comment implements Serializable {
     @Setter
     private Long id;
 
+    @Basic
     @Getter
     @Setter
-    private String title;
+    private String titleC;
 
+    @Basic
     @Getter
     @Setter
     private String content;

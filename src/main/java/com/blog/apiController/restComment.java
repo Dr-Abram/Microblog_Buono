@@ -6,14 +6,22 @@
 package com.blog.apiController;
 
 import com.blog.entities.Comment;
+import com.blog.entities.Post;
 import com.blog.repositories.CommentRepository;
+import com.blog.repositories.PostRepository;
+import com.blog.repositories.UserRepository;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.Optional;
+import javax.servlet.http.HttpServletRequest;
 import javax.ws.rs.core.MediaType;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.Setter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -26,6 +34,7 @@ import org.springframework.web.bind.annotation.RestController;
  *
  * @author Abreham
  */
+/*
 @RestController
 @RequestMapping("/api/comments")
 public class restComment {
@@ -74,4 +83,87 @@ public class restComment {
 
         }
     }
+}
+*/
+///////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////
+
+@RestController
+@RequestMapping("/api/comments")
+public class restComment {
+
+// inietto dentro postRepository il codice di PostRepository (PostRepository è una dependency).
+    @Autowired
+    private PostRepository postRepository;
+
+    @Autowired
+    private UserRepository userRepository;    
+    
+    @Autowired
+    private CommentRepository commentRepository;
+
+    @GetMapping// metodo del prof adattato al mio progetto per fare dei test
+    @CrossOrigin(origins = "*", allowedHeaders = "*")
+    public ResponseEntity<JsonResponseBody> getComments() {
+        return ResponseEntity.status(HttpStatus.OK).body(new JsonResponseBody(HttpStatus.OK.value(), commentRepository.findAll()));
+    }
+
+    @GetMapping(value = "{id}", produces
+            = org.springframework.http.MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<restComment.JsonResponseBody> getComment(@PathVariable(value = "id") Long id) {
+        Optional<Comment> op = commentRepository.findById(id);
+        if (op.isPresent()) {
+            return ResponseEntity.status(HttpStatus.OK).body(new restComment.JsonResponseBody(HttpStatus.OK.value(), commentRepository.findById(id)));
+        } else {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(new restComment.JsonResponseBody(HttpStatus.NOT_FOUND.value(), null));
+        }
+    }
+
+    @PostMapping(consumes
+            = org.springframework.http.MediaType.APPLICATION_JSON_VALUE)
+    @CrossOrigin(origins = "*", allowedHeaders = "*")
+    public ResponseEntity<restComment.JsonResponseBody> addComment(HttpServletRequest request,
+            @RequestBody Comment comment) {
+
+        Comment c = null;
+        if (comment.getTitleC().length() != 0 && comment.getContent().length() != 0) {
+            c = commentRepository.saveAndFlush(comment);
+        }
+//da migliorare l'implementazione di HATEOS utilizzando il supporto in Spring; 
+        //      Da implementare la validazione dell'oggetto utente in input
+        return ResponseEntity.status(HttpStatus.CREATED).header("location", request.
+                getRequestURL().toString() + "/" + c.getId()).body(new restComment.JsonResponseBody(HttpStatus.CREATED.value(), null));
+    }
+
+    @RequestMapping(value = "{id}", method = DELETE)
+    @CrossOrigin(origins = "*", allowedHeaders = "*")
+    public ResponseEntity<restComment.JsonResponseBody> deleteComment(@PathVariable("id") Long id) {
+        Optional<Comment> op = commentRepository.findById(id);
+        if (op.isPresent()) {
+            commentRepository.deleteById(id);  //se presente, cancello
+            return ResponseEntity.status(HttpStatus.NO_CONTENT).body(new restComment.JsonResponseBody(HttpStatus.NO_CONTENT.value(), null));
+        } else {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(new restComment.JsonResponseBody(HttpStatus.NOT_FOUND.value(), "Comment non presente."));
+        }
+    }
+
+    /*
+    @GetMapping(value = "{id}/comments")
+    public ResponseEntity getAllComment(@PathVariable("id") Long id) {
+
+        return ResponseEntity.ok(commentRepository.findByPost(postRepository.findById(id).get()));
+    }
+     */
+    //----------Definizione JsonResponseBody----------
+    @AllArgsConstructor
+    class JsonResponseBody {
+
+        @Getter
+        @Setter
+        private int server;
+        @Getter
+        @Setter
+        private Object response;
+    }
+//------------------------------------------------
 }

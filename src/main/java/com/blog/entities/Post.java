@@ -25,10 +25,12 @@ public class Post implements Serializable{
     @Setter
     private Long id;
 
+    @Basic
     @Getter
     @Setter
     private String title;
 
+    @Basic
     @Getter
     @Setter
     private String content;
