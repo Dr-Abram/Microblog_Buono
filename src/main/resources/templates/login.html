@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Microblog - Login</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="../public/css/bootstrap.min.css">
+
+    </head>
+
+    <body>
+        <div class="container py-5">
+            <div class="row">
+                <div class="col-md-12">   
+                    <ul class="nav nav-fill">
+                        <a class="nav-item" href="registration.html"><h2>Registration</h2></a>
+                    </ul>
+                    <hr class="mb-5">
+                    <div class="row">
+                        <div class="col-md-6 offset-md-3">
+                            <span class="anchor" id="formLogin"></span>
+
+                            <!-- form card login with validation feedback -->
+                            <div class="card card-outline-secondary">
+                                <div class="card-header">
+                                    <h3 class="mb-0">Login</h3>
+                                </div>
+                                <div class="card-body">
+                                    <form class="form" role="form" autocomplete="off" id="loginForm" novalidate="" action="/login" method="POST">
+                                        
+                                        <!-- Username -->
+                                        
+                                        <div class="form-group">
+                                            <label for="uname1">Username</label>
+                                            <input type="text" class="form-control" name="username" id="uname1" required="">
+                                            <div class="invalid-feedback">Please enter your username or email</div>
+                                        </div>
+                                        
+                                        <!-- Password -->
+                                        
+                                        <div class="form-group">
+                                            <label>Password</label>
+                                            <input type="password" class="form-control" name="password" id="pwd1" required="" autocomplete="new-password">
+                                            <div class="invalid-feedback">Please enter a password</div>
+                                        </div>
+
+                                        <button type="submit" class="btn btn-success btn-lg" id="btnLogin">Login</button>
+                                    </form>
+                                </div>
+                                <!--/card-body-->
+                            </div>
+
+                        </div>
+                        <!--/row-->
+
+                        <br><br><br><br>
+
+                    </div>
+                    <!--/col-->
+                </div>
+            </div>
+        </div>
+        <!--/container-->
+        <script src="../public/jquery-3.5.1.min.js"></script>
+        <script src="../public/js/bootstrap.min.js"></script>
+    </body>
+</html>
+
